@@ -14,6 +14,9 @@
 		10A36D491AD4C24000700ACC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10A36D481AD4C24000700ACC /* Images.xcassets */; };
 		10A36D4C1AD4C24000700ACC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10A36D4A1AD4C24000700ACC /* LaunchScreen.xib */; };
 		10A36D581AD4C24000700ACC /* FontTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A36D571AD4C24000700ACC /* FontTests.m */; };
+		10A36D631AD4C27700700ACC /* FontInfomation.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A36D621AD4C27700700ACC /* FontInfomation.m */; };
+		10A36D661AD4C5EC00700ACC /* FontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A36D651AD4C5EC00700ACC /* FontCell.m */; };
+		10A36D6C1AD4D5FF00700ACC /* FontTitleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A36D6B1AD4D5FF00700ACC /* FontTitleHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,12 @@
 		10A36D511AD4C24000700ACC /* FontTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A36D561AD4C24000700ACC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10A36D571AD4C24000700ACC /* FontTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontTests.m; sourceTree = "<group>"; };
+		10A36D611AD4C27700700ACC /* FontInfomation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontInfomation.h; sourceTree = "<group>"; };
+		10A36D621AD4C27700700ACC /* FontInfomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontInfomation.m; sourceTree = "<group>"; };
+		10A36D641AD4C5EC00700ACC /* FontCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCell.h; sourceTree = "<group>"; };
+		10A36D651AD4C5EC00700ACC /* FontCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCell.m; sourceTree = "<group>"; };
+		10A36D6A1AD4D5FF00700ACC /* FontTitleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontTitleHeaderView.h; sourceTree = "<group>"; };
+		10A36D6B1AD4D5FF00700ACC /* FontTitleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontTitleHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +94,12 @@
 				10A36D401AD4C24000700ACC /* AppDelegate.m */,
 				10A36D421AD4C24000700ACC /* ViewController.h */,
 				10A36D431AD4C24000700ACC /* ViewController.m */,
+				10A36D6A1AD4D5FF00700ACC /* FontTitleHeaderView.h */,
+				10A36D6B1AD4D5FF00700ACC /* FontTitleHeaderView.m */,
+				10A36D641AD4C5EC00700ACC /* FontCell.h */,
+				10A36D651AD4C5EC00700ACC /* FontCell.m */,
+				10A36D611AD4C27700700ACC /* FontInfomation.h */,
+				10A36D621AD4C27700700ACC /* FontInfomation.m */,
 				10A36D451AD4C24000700ACC /* Main.storyboard */,
 				10A36D481AD4C24000700ACC /* Images.xcassets */,
 				10A36D4A1AD4C24000700ACC /* LaunchScreen.xib */,
@@ -221,7 +236,10 @@
 			files = (
 				10A36D441AD4C24000700ACC /* ViewController.m in Sources */,
 				10A36D411AD4C24000700ACC /* AppDelegate.m in Sources */,
+				10A36D661AD4C5EC00700ACC /* FontCell.m in Sources */,
+				10A36D631AD4C27700700ACC /* FontInfomation.m in Sources */,
 				10A36D3E1AD4C24000700ACC /* main.m in Sources */,
+				10A36D6C1AD4D5FF00700ACC /* FontTitleHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,9 +361,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Font/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -353,9 +374,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Font/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
