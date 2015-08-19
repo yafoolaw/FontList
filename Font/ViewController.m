@@ -10,15 +10,15 @@
 #import "FontInfomation.h"
 #import "FontCell.h"
 #import "FontTitleHeaderView.h"
+#import "FontModel.h"
 
 #define FONT_CELL  @"FontCell"
 #define FONT_TITLE @"FontTitleHeaderView"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView  *tableView;
-@property (nonatomic, strong) NSArray      *titlesArray;
-@property (nonatomic, strong) NSDictionary *fontLists;
+@property (nonatomic, strong) UITableView    *tableView;
+@property (nonatomic, strong) NSMutableArray *fontsArray;
 
 @end
 
@@ -28,8 +28,26 @@
     [super viewDidLoad];
 
     // 初始化数据源
-    self.titlesArray = [NSArray arrayWithArray:[FontInfomation fontTitles]];
-    self.fontLists   = [NSDictionary dictionaryWithDictionary:[FontInfomation systomFontNameList]];
+    NSArray *titlesArray = [NSArray arrayWithArray:[FontInfomation fontTitles]];
+    NSDictionary *fontLists   = [NSDictionary dictionaryWithDictionary:[FontInfomation systomFontNameList]];
+    
+    self.fontsArray = [NSMutableArray array];
+    for (int i = 0; i < titlesArray.count; i++) {
+        
+        FontModel *model = [FontModel new];
+        model.m_sectionName = titlesArray[i];
+        model.m_cellArray = fontLists[model.m_sectionName];
+        if (i == 0) {
+            
+            model.m_isExpanded = YES;
+            
+        } else {
+            
+            model.m_isExpanded = NO;
+        }
+        
+        [_fontsArray addObject:model];
+    }
     
     // 加载tableView
     [self.view addSubview:self.tableView];
@@ -51,36 +69,95 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *fontArray = self.fontLists[self.titlesArray[section]];
     
-    return fontArray.count;
+    FontModel *model = _fontsArray[section];
+    
+    if (model.m_isExpanded) {
+        
+        return model.m_cellArray.count;
+    } else {
+        return 0;
+    }
+    
+    return model.m_cellArray.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.titlesArray.count;
+    
+    return _fontsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     FontCell *cell = [tableView dequeueReusableCellWithIdentifier:FONT_CELL];
     
-    NSArray  *fontArray = self.fontLists[self.titlesArray[indexPath.section]];
-    NSString *fontName  = fontArray[indexPath.row];
-    
-    [cell accessData:fontName];
+    FontModel *model = _fontsArray[indexPath.section];
+    [cell accessData:model.m_cellArray[indexPath.row]];
     
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     FontTitleHeaderView *titleView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:FONT_TITLE];
     
-    [titleView accessData:self.titlesArray[section]];
+    titleView.section  = section;
+    FontModel *model = _fontsArray[section];
+    
+    __block FontTitleHeaderView *weakHeaderView = titleView;
+    
+    titleView.headerBlock = ^(NSInteger headerSection){
+        
+        FontModel *headerModel = _fontsArray[headerSection];
+    
+        if (headerModel.m_isExpanded) {
+            
+            headerModel.m_isExpanded = NO;
+            [weakHeaderView normalStateAnimated:YES];
+            
+            NSMutableArray *indexPathArray = [NSMutableArray array];
+            for (int i = 0; i < headerModel.m_cellArray.count; i++) {
+                
+                [indexPathArray addObject:[NSIndexPath indexPathForItem:i inSection:headerSection]];
+            }
+            [_tableView deleteRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
+            
+        } else {
+            
+            headerModel.m_isExpanded = YES;
+            [weakHeaderView extendStateAnimated:YES];
+            
+            NSMutableArray *indexPathArray = [NSMutableArray array];
+            for (int i = 0; i < headerModel.m_cellArray.count; i++) {
+                
+                [indexPathArray addObject:[NSIndexPath indexPathForItem:i inSection:headerSection]];
+            }
+            [_tableView insertRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
+        }
+    };
+    
+    [titleView accessData:model];
+    
+    if (model.m_isExpanded) {
+        
+        [titleView extendStateAnimated:NO];
+        
+    } else {
+        
+        [titleView normalStateAnimated:NO];
+    }
     
     return titleView;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return 50;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
+}
+
 
 @end

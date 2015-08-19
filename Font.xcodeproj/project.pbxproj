@@ -17,6 +17,8 @@
 		10A36D631AD4C27700700ACC /* FontInfomation.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A36D621AD4C27700700ACC /* FontInfomation.m */; };
 		10A36D661AD4C5EC00700ACC /* FontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A36D651AD4C5EC00700ACC /* FontCell.m */; };
 		10A36D6C1AD4D5FF00700ACC /* FontTitleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A36D6B1AD4D5FF00700ACC /* FontTitleHeaderView.m */; };
+		B5A65F251B8374060068335E /* FontModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A65F241B8374060068335E /* FontModel.m */; };
+		B5A65F291B8395040068335E /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A65F281B8395040068335E /* arrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 		10A36D651AD4C5EC00700ACC /* FontCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCell.m; sourceTree = "<group>"; };
 		10A36D6A1AD4D5FF00700ACC /* FontTitleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontTitleHeaderView.h; sourceTree = "<group>"; };
 		10A36D6B1AD4D5FF00700ACC /* FontTitleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontTitleHeaderView.m; sourceTree = "<group>"; };
+		B5A65F231B8374060068335E /* FontModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontModel.h; sourceTree = "<group>"; };
+		B5A65F241B8374060068335E /* FontModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontModel.m; sourceTree = "<group>"; };
+		B5A65F281B8395040068335E /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +103,8 @@
 				10A36D6B1AD4D5FF00700ACC /* FontTitleHeaderView.m */,
 				10A36D641AD4C5EC00700ACC /* FontCell.h */,
 				10A36D651AD4C5EC00700ACC /* FontCell.m */,
+				B5A65F231B8374060068335E /* FontModel.h */,
+				B5A65F241B8374060068335E /* FontModel.m */,
 				10A36D611AD4C27700700ACC /* FontInfomation.h */,
 				10A36D621AD4C27700700ACC /* FontInfomation.m */,
 				10A36D451AD4C24000700ACC /* Main.storyboard */,
@@ -113,6 +120,7 @@
 			children = (
 				10A36D3C1AD4C24000700ACC /* Info.plist */,
 				10A36D3D1AD4C24000700ACC /* main.m */,
+				B5A65F281B8395040068335E /* arrow.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -216,6 +224,7 @@
 			files = (
 				10A36D471AD4C24000700ACC /* Main.storyboard in Resources */,
 				10A36D4C1AD4C24000700ACC /* LaunchScreen.xib in Resources */,
+				B5A65F291B8395040068335E /* arrow.png in Resources */,
 				10A36D491AD4C24000700ACC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +246,7 @@
 				10A36D441AD4C24000700ACC /* ViewController.m in Sources */,
 				10A36D411AD4C24000700ACC /* AppDelegate.m in Sources */,
 				10A36D661AD4C5EC00700ACC /* FontCell.m in Sources */,
+				B5A65F251B8374060068335E /* FontModel.m in Sources */,
 				10A36D631AD4C27700700ACC /* FontInfomation.m in Sources */,
 				10A36D3E1AD4C24000700ACC /* main.m in Sources */,
 				10A36D6C1AD4D5FF00700ACC /* FontTitleHeaderView.m in Sources */,
@@ -436,6 +446,7 @@
 				10A36D5D1AD4C24000700ACC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		10A36D5E1AD4C24000700ACC /* Build configuration list for PBXNativeTarget "FontTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +455,7 @@
 				10A36D601AD4C24000700ACC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

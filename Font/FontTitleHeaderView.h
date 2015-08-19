@@ -10,6 +10,14 @@
 
 @interface FontTitleHeaderView : UITableViewHeaderFooterView
 
+@property (nonatomic) NSInteger section;
+
+@property (nonatomic,copy) void (^headerBlock)(NSInteger section);
+
 - (void)accessData:(id)data;
+
+- (void)normalStateAnimated:(BOOL)animated;
+
+- (void)extendStateAnimated:(BOOL)animated;
 
 @end
