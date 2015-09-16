@@ -11,3 +11,7 @@
 
 ![增加折叠效果](/Font.gif)
 
+参考[YouXianMing](https://github.com/YouXianMing/HeaderViewTapAnimation)文本漂移动画,增加新的动画效果.
+
+![文本漂移动画](/TextOffset.gif)
+

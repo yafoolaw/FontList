@@ -9,9 +9,12 @@
 #import "FontTitleHeaderView.h"
 #import "FontModel.h"
 
+#define Width  [UIScreen mainScreen].bounds.size.width
+
 @interface FontTitleHeaderView ()
 
-@property (nonatomic, strong) UILabel           *titleLabel;
+@property (nonatomic, strong) UILabel           *m_nomalTitleLabel;
+@property (nonatomic, strong) UILabel           *m_highlightLabel;
 @property (nonatomic, strong) UIImageView       *arrowImageView;
 @property (nonatomic)         CGAffineTransform m_defaultTransform;
 
@@ -23,10 +26,15 @@
     
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         
-        self.titleLabel           = [[UILabel alloc] initWithFrame:CGRectMake(7.f, 5, [UIScreen mainScreen].bounds.size.width-7-40, 30)];
-        self.titleLabel.font      = [UIFont systemFontOfSize:12.f];
-        self.titleLabel.textColor = [UIColor colorWithRed:0.133 green:0.620 blue:0.796 alpha:1];
-        [self addSubview:self.titleLabel];
+        self.m_nomalTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.f, 5, Width-7-40, 30)];
+        _m_nomalTitleLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Medium" size:12];
+        self.m_nomalTitleLabel.textColor = [UIColor colorWithRed:0.133 green:0.620 blue:0.796 alpha:1];
+        [self addSubview:self.m_nomalTitleLabel];
+        
+        self.m_highlightLabel = [[UILabel alloc]initWithFrame:_m_nomalTitleLabel.frame];
+        _m_highlightLabel.font      = _m_nomalTitleLabel.font;
+        _m_highlightLabel.textColor = [UIColor redColor];
+        [self addSubview:_m_highlightLabel];
         
         self.arrowImageView = [[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 40,  15, 10, 10)];
         self.arrowImageView.image = [UIImage imageNamed:@"arrow"];
@@ -58,7 +66,8 @@
     if ([data isKindOfClass:[FontModel class]]) {
         
         FontModel *model = (FontModel*)data;
-        self.titleLabel.text = model.m_sectionName;
+        _m_nomalTitleLabel.text = model.m_sectionName;
+        _m_highlightLabel.text  = model.m_sectionName;
     }
 }
 
@@ -66,13 +75,25 @@
     
     if (animated) {
         
-        [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
             
-                             _arrowImageView.transform = _m_defaultTransform;
-                         }];
+            _arrowImageView.transform = _m_defaultTransform;
+            _m_nomalTitleLabel.alpha  = 1;
+            _m_nomalTitleLabel.frame  = CGRectMake(7, 5, Width-7-40, 30);
+            _m_highlightLabel.alpha   = 0;
+            _m_highlightLabel.frame   = CGRectMake(7, 5, Width-7-40, 30);
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
     } else {
         
         _arrowImageView.transform = _m_defaultTransform;
+        _m_nomalTitleLabel.alpha  = 1;
+        _m_nomalTitleLabel.frame  = CGRectMake(7, 5, Width-7-40, 30);
+        _m_highlightLabel.alpha   = 0;
+        _m_highlightLabel.frame   = CGRectMake(7, 5, Width-7-40, 30);
     }
 }
 
@@ -80,13 +101,25 @@
     
     if (animated) {
         
-        [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
             
-                             _arrowImageView.transform = CGAffineTransformRotate(_m_defaultTransform, M_PI_2);
-                         }];
+            _arrowImageView.transform = CGAffineTransformRotate(_m_defaultTransform, M_PI_2);
+            _m_nomalTitleLabel.alpha  = 0;
+            _m_nomalTitleLabel.frame  = CGRectMake(7+10, 5, Width-7-40, 30);
+            _m_highlightLabel.alpha   = 1;
+            _m_highlightLabel.frame   = CGRectMake(7+10, 5, Width-7-40, 30);
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
     } else {
         
         _arrowImageView.transform = CGAffineTransformRotate(_m_defaultTransform, M_PI_2);
+        _m_nomalTitleLabel.alpha  = 0;
+        _m_nomalTitleLabel.frame  = CGRectMake(7+10, 5, Width-7-40, 30);
+        _m_highlightLabel.alpha   = 1;
+        _m_highlightLabel.frame   = CGRectMake(7+10, 5, Width-7-40, 30);
     }
 }
 
